@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: moovi.zmsfapp
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: MOOVI_S4
+          url: https://vm43.4hub.cloud:44343
+        app:
+          name: ZMSF_APP
+          package: ZPK_DGOMES
+          transport: S4HK902531
