@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: moovi.zpssilvaapp
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: MOOVI_S4
+          url: https://vm71.4hub.cloud:44371
+        app:
+          name: ZPSILVA_APP
+          package: ZFIORIF
+          transport: S4MK900006

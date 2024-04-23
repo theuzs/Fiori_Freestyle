@@ -1,0 +1,184 @@
+{
+    "_version": "1.37.0",
+    "sap.app": {
+        "id": "moovi.zpssilvaapp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:listdetail",
+            "version": "1.7.5",
+            "toolsId": "7a16d7d5-daad-489b-8b52-7b0ceb533195"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZPSSILVA_GW_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "moovi-zpssilvaapp-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "zpsilva_app",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.96.6",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "moovi.zpssilvaapp.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    
+                        "defaultOperationMode": "Server",
+                        "defaultBindingMode": "TwoWay",
+                        "useBatch": true,
+                        "defaultUpdateMethod": "PUT"
+                }
+            },
+            "editCompanyModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "/model/editCompany.json"
+            },
+            "editFlightModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "/model/editFlight.json"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "viewPath": "moovi.zpssilvaapp.view",
+                "controlId": "layout",
+                "controlAggregation": "beginColumnPages",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "list",
+                    "target": "list"
+                },
+                {
+                    "pattern": "ScarrSet/{objectId}",
+                    "name": "object",
+                    "target": [
+                        "list",
+                        "object"
+                    ]
+                },
+                {
+                    "pattern": "SpfliSet/{Carrid}/{Connid}",
+                    "name": "flightDetail",
+                    "target": [
+                        "list",
+                        "flightDetail"
+                    ]
+                }
+            
+            ],
+            "targets": {
+                "list": {
+                    "viewName": "List",
+                    "viewLevel": 1,
+                    "viewId": "list"
+                },
+                "object": {
+                    "viewName": "Detail",
+                    "viewId": "detail",
+                    "viewLevel": 1,
+                    "controlAggregation": "midColumnPages"
+                },
+                "flightDetail": {
+                    "viewName": "FlightDetail",
+                    "viewId": "flightDetail",
+                    "viewLevel": 1,
+                    "controlAggregation": "midColumnPages"
+                },
+                "detailObjectNotFound": {
+                    "viewName": "DetailObjectNotFound",
+                    "viewId": "detailObjectNotFound",
+                    "controlAggregation": "midColumnPages"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "moovi.zpssilvaapp.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        }
+    }
+}
