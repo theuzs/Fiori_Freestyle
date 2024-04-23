@@ -1,0 +1,55 @@
+<mvc:View
+    controllerName="moovi.m10a2.controller.CompanyDetail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    busyIndicatorDelay="0">
+    <Page
+        id="companyDetailPage"
+        title="{i18n>CompanyDetailsOf} {Carrname}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        class="sapUiResponsiveContentPadding">
+        <content>
+            <Panel
+                id="companyDetailPanel"
+                width="auto"
+                class="sapUiResponsiveMargin sapUiNoContentPadding">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>CompanyID} {Carrid}" level="H2"/>
+                        <ToolbarSpacer />
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <f:SimpleForm
+                        id="formEdit"
+                        minWidth="1024"
+                        editable="false"
+                        layout="ResponsiveGridLayout"
+                        labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+                        columnsL="1" columnsM="1">                        
+                        <f:content>
+                        <Label text="{i18n>CompanyID}"   visible="{editCompanyModel>/isNew}" />
+                        <Input type="Text"  value="{Carrid}"  visible="{editCompanyModel>/isNew}" />     
+
+                        <Label text="{i18n>CompanyName}"/>
+                            <Input type="Text" value="{Carrname}"/>                        
+                            <Label text="{i18n>CurrCode}"/>
+                             <Input type="Text" value="{Currcode}"/>
+                            <Label text="{i18n>Url}"/>
+                             <Input type="Text" value="{Url}"/>                                     
+                        </f:content>
+                    </f:SimpleForm>
+                </content>               
+            </Panel>
+        </content>     
+         <footer>
+                            <OverflowToolbar>
+                                <ToolbarSpacer/>
+                                <Button text="Salvar" type="Accept" press=".onBtnSavePress" />
+                                <Button text="Delete" type="Reject" press=".onBtnDeletePress" />	                                
+                            </OverflowToolbar>
+           </footer>
+    </Page>
+</mvc:View>
