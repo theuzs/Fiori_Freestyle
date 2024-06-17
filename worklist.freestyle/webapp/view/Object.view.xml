@@ -1,0 +1,344 @@
+<mvc:View
+    height="100%"
+    controllerName="worklist.freestyle.controller.Object"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        id="page"
+        title="{objectView>/Name1}"
+        class="sapUiResponsivePadding--header">
+
+        <content>
+            <ObjectHeader
+                title="{objectView>/SalesOrder}"
+                number="{parts:[{path:'objectView>/NetValue'},{path:'objectView>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}"
+                numberUnit="{objectView>/Currency}"
+                backgroundDesign="Solid">
+
+<attributes>
+    <ObjectAttribute title="ID do Produto"
+                     text="{objectView>/Adrnr}"
+                     class="object-attribute large-attribute" />
+    <ObjectAttribute title="Preço"
+                     text="{objectView>/NetValue} {objectView>/Currency}"
+                     class="object-attribute large-attribute" />
+    <ObjectAttribute title="Org. Venda"
+                     text="{objectView>/SalesOrg}"
+                     class="object-attribute large-attribute" />
+    <ObjectAttribute title="Tp. Ordem"
+                     text="{objectView>/TpOrdem}"
+                     class="object-attribute large-attribute" />
+</attributes>
+
+
+                <!-- Statuses Section -->
+                <statuses>
+                    <ObjectStatus title="Status"
+                                  text="Em Estoque"
+                                  state="Success" />
+                </statuses>
+
+            </ObjectHeader>
+
+            <ProgressIndicator
+                class="myProgressIndicator"
+                percentValue="{objectView>/NetValue}"
+                displayValue="{objectView>/NetValue}"
+                showValue="true"
+                state="{path: 'NetValue', formatter: '.formatter.quantityState'}" />
+
+            <IconTabBar
+                id="idIconTabBarMulti"
+                expanded="{device>/isNoPhone}"
+                class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter icon="sap-icon://hint" key="info" text="Informações">
+                        <f:SimpleForm
+                            layout="ResponsiveGridLayout"
+                            class="sapUiForceWidthAuto sapUiResponsiveMargin">
+                            <f:title>
+                                <core:Title text="Informações Adicionais" />
+                            </f:title>
+                            <Label text="Criado em" />
+                            <Text text="{objectView>/CreatedOn}" />
+                            <Label text="Criado por" />
+                            <Text text="{objectView>/CreatedBy}" />
+                            <Label text="Organização de Vendas" />
+                            <Text text="{objectView>/SalesOrganization}" />
+                            <Label text="Canal de Distribuição" />
+                            <Text text="{objectView>/DistributionChannel}" />
+                            <Label text="Divisão" />
+                            <Text text="{objectView>/Division}" />
+                            <Label text="Data do Documento" />
+                            <Text text="{objectView>/DocumentDate}" />
+                        </f:SimpleForm>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://table-view" key="table" text="Materiais">
+                        <Table
+                            headerText="Materiais da ordem de Venda"
+                            width="auto"
+                            class="sapUiResponsiveMargin"
+                            items="{ path: 'objectView>/to_DeliveryItems/results' }">
+                            <columns>
+                                <Column>
+                                    <Text text="ID do Item" />
+                                </Column>
+                                <Column>
+                                    <Text text="Produto" />
+                                </Column>
+                                <Column>
+                                    <Text text="Quantidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="Unidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="Planta" />
+                                </Column>
+                                <Column>
+                                    <Text text="Peso Líquido" />
+                                </Column>
+                                <Column>
+                                    <Text text="Grupo de Materiais" />
+                                </Column>
+                                <Column>
+                                    <Text text="Peso Bruto" />
+                                </Column>
+                                <Column>
+                                    <Text text="Unidade de Peso Bruto" />
+                                </Column>
+                                <Column>
+                                    <Text text="Valor" />
+                                </Column>
+                                <Column>
+                                    <Text text="Preço" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{objectView>Vbeln}" />
+                                        <Text text="{objectView>Matnr}" />
+                                        <Text text="{objectView>Posnr}" />
+                                        <Text text="{objectView>Lfimg}" />
+                                        <Text text="{objectView>Vrkme}" />
+                                        <Text text="{objectView>Werks}" />
+                                        <Text text="{objectView>Ntgew}" />
+                                        <Text text="{objectView>Matkl}" />
+                                        <Text text="{objectView>Brgew}" />
+                                        <Text text="{objectView>Gewei}" />
+                                        <Text text="{objectView>Valor}" />
+                                        <Text text="{objectView>Vgbel}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                      <IconTabFilter icon="sap-icon://shipping-status" key="table" text="Remessas">
+                        <Table
+                            headerText="Remessas da ordem de Venda"
+                            width="auto"
+                            class="sapUiResponsiveMargin"
+                            items="{ path: 'objectView>/to_RemessaItems/results' }">
+                            <columns>
+                                <Column>
+                                    <Text text="Categoria Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Quantidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="UMB" />
+                                </Column>
+                                <Column>
+                                    <Text text="Moeda" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{objectView>Ruuid}" />
+                                        <Text text="{objectView>Vbtyp_v}"/>
+                                        <Text text="{objectView>Vbelv}" />
+                                        <Text text="{objectView>Posnv}" />
+                                        <Text text="{objectView>Vbeln}" />
+                                        <Text text="{objectView>Posnn}" />
+                                        <Text text="{objectView>Meins}" />
+                                        <Text text="{objectView>Waers}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+
+                     <IconTabFilter icon="sap-icon://monitor-payments" key="table" text="Faturas">
+                      <Table
+                            headerText="Remessas da ordem de Venda"
+                            width="auto"
+                            class="sapUiResponsiveMargin"
+                            items="{ path: 'objectView>/to_FaturaItems/results' }">
+                            <columns>
+                                <Column>
+                                    <Text text="Categoria Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Quantidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="UMB" />
+                                </Column>
+                                <Column>
+                                    <Text text="Moeda" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{objectView>Ruuid}" />
+                                        <Text text="{objectView>Vbtyp_v}"/>
+                                        <Text text="{objectView>Vbelv}" />
+                                        <Text text="{objectView>Posnv}" />
+                                        <Text text="{objectView>Vbeln}" />
+                                        <Text text="{objectView>Posnn}" />
+                                        <Text text="{objectView>Meins}" />
+                                        <Text text="{objectView>Waers}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                     </IconTabFilter>
+
+                     <IconTabFilter icon="sap-icon://collections-insight" key="table" text="Movimentação">
+                      <Table
+                            headerText="Movimentação Itens"
+                            width="auto"
+                            class="sapUiResponsiveMargin"
+                            items="{ path: 'objectView>/_MovMercadoriaItems/results' }">
+                            <columns>
+                                <Column>
+                                    <Text text="Categoria Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Quantidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="UMB" />
+                                </Column>
+                                <Column>
+                                    <Text text="Moeda" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{objectView>Ruuid}" />
+                                        <Text text="{objectView>Vbtyp_v}"/>
+                                        <Text text="{objectView>Vbelv}" />
+                                        <Text text="{objectView>Posnv}" />
+                                        <Text text="{objectView>Vbeln}" />
+                                        <Text text="{objectView>Posnn}" />
+                                        <Text text="{objectView>Meins}" />
+                                        <Text text="{objectView>Waers}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                     </IconTabFilter>
+
+                     <IconTabFilter icon="sap-icon://customer-and-supplier" key="table" text="Devolução">
+                      <Table
+                            headerText="Devolução Itens"
+                            width="auto"
+                            class="sapUiResponsiveMargin"
+                            items="{ path: 'objectView>/to_DevMercadoriaItems/results' }">
+                            <columns>
+                                <Column>
+                                    <Text text="Categoria Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item Precedente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Documento subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Item subsequente" />
+                                </Column>
+                                <Column>
+                                    <Text text="Quantidade" />
+                                </Column>
+                                <Column>
+                                    <Text text="UMB" />
+                                </Column>
+                                <Column>
+                                    <Text text="Moeda" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{objectView>Ruuid}" />
+                                        <Text text="{objectView>Vbtyp_v}"/>
+                                        <Text text="{objectView>Vbelv}" />
+                                        <Text text="{objectView>Posnv}" />
+                                        <Text text="{objectView>Vbeln}" />
+                                        <Text text="{objectView>Posnn}" />
+                                        <Text text="{objectView>Meins}" />
+                                        <Text text="{objectView>Waers}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                     </IconTabFilter>
+                </items>
+            </IconTabBar>
+                        <!-- Panel de Comentários fora do IconTabBar -->
+            <Panel headerText="Comentários" width="auto" class="sapUiResponsiveMargin">
+                <TextArea rows="4" width="100%" value="{objectView>/comment}" placeholder="Digite seu comentário aqui..."/>
+            </Panel>
+        </content>
+        
+    </Page>
+</mvc:View>

@@ -1,0 +1,176 @@
+<mvc:View controllerName="worklist.freestyle.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:core="sap.ui.core">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false">
+
+        <semantic:titleHeading>
+            <Title text="{i18n>worklistTitle}" />
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <IconTabBar
+                id="iconTabBar"
+                class="sapUiResponsiveContentPadding"
+                select=".onIconTabSelect">
+
+                <items>
+                    <IconTabFilter
+                        text="Ordens"
+                        icon="sap-icon://message-success"
+                        key="all"
+                        tooltip="Mostrar todas as ordens">
+                    <OverflowToolbar>
+                        <SearchField 
+                            liveChange=".onSearch" 
+                            width="auto" 
+                            placeholder="Pesquisar..."
+                            tooltip="Digite a ordem para pesquisar" />
+                        
+                        <ToolbarSpacer/>
+
+                        <Button 
+                            text="Imprimir" 
+                            icon="sap-icon://print" 
+                            type="Transparent" 
+                            press="onPrintPress"
+                            width="auto" 
+                            tooltip="Imprimir ordens selecionadas" />
+                    </OverflowToolbar>
+
+                        <Table
+                            id="table_ov"
+                            width="auto"
+                            mode="MultiSelect"
+                            items="{
+                                path: '/Z_OrderView',
+                                sorter: {
+                                    path: 'SalesOrder',
+                                    descending: false
+                                }
+                            }"
+                            noDataText="{worklistView>/tableNoDataText}"
+                            busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                            growing="true"
+                            growingScrollToLoad="true"
+                            updateFinished=".onUpdateFinished">
+                            <!-- Table Columns -->
+                            <columns>
+                                <Column id="clientColumn" hAlign="Begin">
+                                    <Text text="{i18n>clientColumnTitle}" id="clientColumnTitle"/>
+                                </Column>
+                                <Column id="salesOrderColumn">
+                                    <Text text="{i18n>salesOrderColumnTitle}" id="salesOrderColumnTitle"/>
+                                </Column>
+                                <Column id="netValueColumn" hAlign="End">
+                                    <Text text="{i18n>netValueColumnTitle}" id="netValueColumnTitle"/>
+                                </Column>
+                            </columns>
+                            <!-- Table Items -->
+                            <items>
+                                <ColumnListItem type="Navigation" press=".onPress">
+                                    <cells>
+                                        <Text text="{Name1}" />
+                                        <ObjectIdentifier title="{SalesOrder}" />
+                                        <ObjectNumber number="{NetValue}" unit="{Currency}" state="Success"/>
+                                        <Text text="{Client}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter text="Warning" icon="sap-icon://message-warning" key="filtro1" iconColor="Critical" tooltip="Mostrar ordens com problemas">
+                        <Table
+                            id="table1"
+                            width="auto"
+                            items="{
+                                path: '/Z_OrderView',
+                                sorter: {
+                                    path: 'SalesOrder',
+                                    descending: true
+                                }
+                            }"
+                            noDataText="{worklistView>/tableNoDataText}"
+                            busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                            growing="true"
+                            growingScrollToLoad="true"
+                            updateFinished=".onUpdateFinished">
+                            <!-- Table Columns -->
+                            <columns>
+                                <Column id="clientColumn1" hAlign="Begin">
+                                    <Text text="{i18n>clientColumnTitle}" id="clientColumnTitle1"/>
+                                </Column>
+                                <Column id="salesOrderColumn1">
+                                    <Text text="{i18n>salesOrderColumnTitle}" id="salesOrderColumnTitle1"/>
+                                </Column>
+                                <Column id="netValueColumn1" hAlign="End">
+                                    <Text text="{i18n>netValueColumnTitle}" id="netValueColumnTitle1"/>
+                                </Column>
+                            </columns>
+                            <!-- Table Items -->
+                            <items>
+                                <ColumnListItem type="Navigation" press=".onPress">
+                                    <cells>
+                                        <Text text="{Name1}" />
+                                        <ObjectIdentifier title="{SalesOrder}" />
+                                        <ObjectNumber number="{NetValue}" unit="{Currency}" state="Warning"/>
+                                        <Text text="{Client}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter text="Erros" icon="sap-icon://message-error" key="filtro2" iconColor="Negative" tooltip="Mostrar ordens com erros">
+                        <Table
+                            id="table2"
+                            width="auto"
+                            items="{
+                                path: '/Z_OrderView',
+                                sorter: {
+                                    path: 'NetValue',
+                                    descending: true
+                                }
+                            }"
+                            noDataText="{worklistView>/tableNoDataText}"
+                            busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                            growing="true"
+                            growingScrollToLoad="true"
+                            updateFinished=".onUpdateFinished">
+                            <!-- Table Columns -->
+                            <columns>
+                                <Column id="clientColumn2" hAlign="Begin">
+                                    <Text text="{i18n>clientColumnTitle}" id="clientColumnTitle2"/>
+                                </Column>
+                                <Column id="salesOrderColumn2">
+                                    <Text text="{i18n>salesOrderColumnTitle}" id="salesOrderColumnTitle2"/>
+                                </Column>
+                                <Column id="netValueColumn2" hAlign="End">
+                                    <Text text="{i18n>netValueColumnTitle}" id="netValueColumnTitle2"/>
+                                </Column>
+                            </columns>
+                            <!-- Table Items -->
+                            <items>
+                                <ColumnListItem type="Navigation" press=".onPress">
+                                    <cells>
+                                        <Text text="{Name1}" />
+                                        <ObjectIdentifier title="{SalesOrder}" />
+                                        <ObjectNumber number="{NetValue}" unit="{Currency}" state="Error"/>
+                                        <Text text="{Client}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </semantic:content>
+
+
+
+    </semantic:SemanticPage>
+</mvc:View>

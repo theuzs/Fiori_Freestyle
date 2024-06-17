@@ -1,0 +1,74 @@
+/* styles.css */
+
+/* Body and Container Styles */
+html, body, #content, #container {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Object Header Styles */
+.myObjectHeader {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+}
+
+.myObjectHeader .sapMObjectHeaderTitle {
+    color: #333;
+}
+
+.myObjectHeader .sapMObjectNumber {
+    font-size: 13rem;
+}
+
+/* Attributes and Object Status Styles */
+.myAttributes {
+    margin-top: 8px;
+}
+
+.myAttributes .sapMObjectAttribute {
+    color: #666;
+}
+
+/* styles.css */
+
+/* Custom Progress Indicator Styles */
+.myProgressIndicator {
+    margin-top: 16px;
+}
+
+.myProgressIndicator .sapMPrgIndeterminateBar {
+    background-color: #0077FF; /* Change this color to your desired color */
+}
+
+
+/* IconTabBar Styles */
+.myIconTabBar {
+    margin-top: 16px;
+}
+
+/* Table Styles */
+.myTable {
+    width: 100%;
+    margin-top: 16px;
+}
+
+
+.object-attribute {
+    font-size: 1rem; /* Adjust the font size as needed */
+    color: #333; /* Text color */
+    font-weight: bolder; /* Normal or bold as needed */
+    margin-bottom: 4px; /* Spacing between attributes */
+    display: block; /* Ensures each attribute appears on a new line */
+    /* Add any additional styling here */
+}
+
+.large-attribute {
+    font-size: 12px; /* Tamanho de fonte maior */
+    font-weight: bold; /* Texto em negrito, se desejado */
+    padding: 5px; /* Espaçamento interno para destacar mais */
+    color: #333; /* Cor do texto */
+}
+
