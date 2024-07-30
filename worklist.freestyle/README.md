@@ -19,6 +19,14 @@
 
 ## worklist.freestyle
 
+![image](https://github.com/user-attachments/assets/07716644-2b07-4093-aab6-e853881c7c86)
+
+![image](https://github.com/user-attachments/assets/1aa20ea7-80ec-437b-a071-c24e6d788f60)
+
+![image](https://github.com/user-attachments/assets/fd4e4fa8-2542-446f-af74-e14ac23d71a1)
+
+![image](https://github.com/user-attachments/assets/9310916a-f0fb-4780-9444-c368fe23fd5c)
+
 
 
 ### Starting the generated app
